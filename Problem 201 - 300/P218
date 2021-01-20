@@ -1,0 +1,5 @@
+class Solution:
+    def getSkyline(self, buildings: [[int]]) -> [[int]]:
+        buildings.sort(key = lambda b: b[0])
+        
+        
