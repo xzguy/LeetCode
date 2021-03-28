@@ -6,7 +6,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def sub(self, r: TreeNode, sum: int, path: [int], res: [[int]]) -> None:
+    def sub(self, r: TreeNode, sum: int, path, res) -> None:
             if not r:
                 return
             path.append(r.val)
@@ -16,7 +16,7 @@ class Solution:
             self.sub(r.right, sum - r.val, path, res)
             path.pop()
 
-    def pathSum(self, root: TreeNode, sum: int) -> [[int]]:
+    def pathSum(self, root: TreeNode, sum: int):
         res = []
         self.sub(root, sum, [], res)
         return res

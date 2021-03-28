@@ -1,3 +1,4 @@
+# time complexity O(log(min(m, n)))
 def findMedianSortedArrays(nums1: [int], nums2: [int]) -> float:
     # assume nums1 has shorter or equal length, otherwise swap them
     m, n = len(nums1), len(nums2)
@@ -10,15 +11,16 @@ def findMedianSortedArrays(nums1: [int], nums2: [int]) -> float:
     while imin <= imax:
         i = (imin + imax) // 2
         j = mid_len - i
-        # i is too big
         if i > 0 and nums1[i-1] > nums2[j]:
-            imax -= 1
-        # i is too small
-        # i < m implies j > 0
+            # i is too big
+            imax = i - 1
         elif i < m and nums2[j-1] > nums1[i]:
-            imin += 1
-        # perfect i
+            # i is too small
+            # i < m implies j > 0
+            imin = i + 1
         else:
+            # perfect i
+
             if i == 0:
                 max_of_left = nums2[j-1]
             elif j == 0:
@@ -35,7 +37,8 @@ def findMedianSortedArrays(nums1: [int], nums2: [int]) -> float:
                 min_of_right = nums1[i]
             else:
                 min_of_right = min(nums1[i], nums2[j])
-            return (max_of_left + min_of_right) / 2.0
+
+            return (max_of_left + min_of_right) / 2
 
 nums1 = [2]
 nums2 = [1,3]

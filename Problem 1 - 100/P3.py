@@ -56,3 +56,22 @@ s = "pypw"
 print(lengthOfLongestSubstring_v1(s))
 print(lengthOfLongestSubstring_v2(s))
 print(lengthOfLongestSubstring_v3(s))
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_dict = {}
+        start = 0
+        max_len = 0
+        for i, c in enumerate(s):
+            if c in char_dict:
+                # !!! carefully update 'start'
+                start = max(start, char_dict[c] + 1)
+                char_dict[c] = i
+            else:
+                char_dict[c] = i
+            max_len = max(max_len, i - start + 1)
+        return max_len
+
+s = "abba"
+sol = Solution()
+print(sol.lengthOfLongestSubstring(s))

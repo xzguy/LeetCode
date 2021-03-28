@@ -21,3 +21,26 @@ def ZigZagConvert(s: str, numRows: int) -> str:
 
 s = "PAYPALISHIRING"
 print(ZigZagConvert(s, 3))
+
+
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+
+        str_rows = [""]*numRows
+        row_idx = 0
+        direction = 1
+        for c in s:
+            str_rows[row_idx] += c
+            row_idx += direction
+            if row_idx == numRows-1:
+                direction = -1
+            elif row_idx == 0:
+                direction = 1
+        return "".join(str_rows)
+
+s = 'PAYPALISHIRING'
+numRows = 2
+sol = Solution()
+print(sol.convert(s, numRows))

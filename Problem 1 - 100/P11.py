@@ -14,3 +14,7 @@ def maxArea(height: [int]) -> int:
 
 height = [1,8,6,2,5,4,8,3,7]
 print(maxArea(height))
+
+class Solution:
+    def maxArea(self, height: [int]) -> int:
+        

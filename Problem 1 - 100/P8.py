@@ -33,3 +33,45 @@ def myAtoi(s: str) -> int:
 
 s = "    +1 1"
 print(myAtoi(s))
+
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        MAX_INT = 2**31 - 1
+        MIN_INT = -2**31
+
+        max_int_digit = MAX_INT % 10
+        min_int_digit = -MIN_INT % 10
+
+        res = 0
+        sign = None
+        read_digit = False
+        for c in s:
+            if c == ' ':
+                if read_digit or sign != None:
+                    break
+            else: 
+                if sign == None and c == '+' and not read_digit:
+                    sign = '+'
+                elif sign == None and c == '-' and not read_digit:
+                    sign = '-'
+                elif c in '0123456789':
+                    num = int(c)
+                    if sign == None or sign == '+':
+                        if res > MAX_INT//10 or (res == MAX_INT//10 and num > max_int_digit):
+                            return MAX_INT
+                    if sign == '-':
+                        if -res < int(MIN_INT/10) or (-res == int(MIN_INT/10) and num > min_int_digit):
+                            return MIN_INT
+                    res = res * 10 + num
+                    read_digit = True
+                else:
+                    break
+        if sign == '-':
+            return -res
+        return res
+
+s = '-91283472332'
+s = '00000-42a1234'
+s = '  +  413'
+sol = Solution()
+print(sol.myAtoi(s))

@@ -36,3 +36,14 @@ def isPalindrome_v2(x: int) -> bool:
 num = 1344431
 
 print(isPalindrome(num))
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        x_str = str(x)
+        if x_str == x_str[::-1]:
+            return True
+        return False
+
+x = 1001
+sol = Solution()
+print(sol.isPalindrome(x))

@@ -26,7 +26,7 @@ class Solution:
     The key point here is the meaning of dp[i][j].
     dp[i][j] is the maximum coins if we burst all balloons in range(i, j+1)
     for every dp[i][j], we should have the last balloons to burst, let's say it is k.
-    dp[i][j] = d[i][k-1] + d][k+1][j] + nums[i-1] * nums[k] * nums[j+1]
+    dp[i][j] = dp[i][k-1] + dp[k+1][j] + nums[i-1] * nums[k] * nums[j+1]
     The most import part is, since the k is the last balloon to burst, the coins
     for bursting k is nums[i-1] * nums[k] * nums[j+1]
     '''
